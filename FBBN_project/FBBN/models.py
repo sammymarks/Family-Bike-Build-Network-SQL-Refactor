@@ -18,7 +18,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
     # python3 manage.py migrate
 
 # seed data ->
-    # Get Seed Data from Django dashboard:  python3 manage.py dumpdata FBBN.part_accessory FBBN.part_bike FBBN.part_rack FBBN.part_seat FBBN.part_storage FBBN.part_trailer FBBN.build FBBN.build_like FBBN.accessory_like FBBN.bike_like FBBN.seat_like FBBN.storage_like FBBN.trailer_like FBBN.rack_like > seed_data_FBBN.json
+    # Get Seed Data from Django dashboard:  python3 manage.py dumpdata FBBN.part_accessory FBBN.part_bike FBBN.part_rack FBBN.part_seat FBBN.part_storage FBBN.part_trailer FBBN.build FBBN.build_like FBBN.accessory_like FBBN.bike_like FBBN.seat_like FBBN.storage_like FBBN.trailer_like FBBN.rack_like --indent 4 > seed/seed_data_FBBN.json
     # Assumes two users exist on the Django end
 
 # #USER
