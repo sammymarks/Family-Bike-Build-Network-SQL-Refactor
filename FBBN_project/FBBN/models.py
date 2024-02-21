@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
+
 
 # Agnostic
     #User
@@ -44,7 +46,7 @@ class Part_Accessory(models.Model):
     url_product = models.TextField()
     url_picture = models.TextField()
     other_notes = models.TextField()
-    added_by_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    added_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.brand} {self.model}"
@@ -59,7 +61,7 @@ class Part_Bike(models.Model):
     url_product = models.TextField(blank=True, null=True)
     url_picture = models.TextField(blank=True, null=True)
     other_notes = models.TextField(blank=True, null=True)
-    added_by_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    added_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.brand} {self.model}"
@@ -72,7 +74,7 @@ class Part_Rack(models.Model):
     url_product = models.TextField(blank=True, null=True)
     url_picture = models.TextField(blank=True, null=True)
     other_notes = models.TextField(blank=True, null=True)
-    added_by_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    added_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.brand} {self.model}"
@@ -85,7 +87,7 @@ class Part_Seat(models.Model):
     url_product = models.TextField(blank=True, null=True)
     url_picture = models.TextField(blank=True, null=True)
     other_notes = models.TextField(blank=True, null=True)
-    added_by_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    added_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.brand} {self.model}"
@@ -98,7 +100,7 @@ class Part_Storage(models.Model):
     url_product = models.TextField(blank=True, null=True)
     url_picture = models.TextField(blank=True, null=True)
     other_notes = models.TextField(blank=True, null=True)
-    added_by_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    added_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.brand} {self.model}"
@@ -112,14 +114,14 @@ class Part_Trailer(models.Model):
     url_product = models.TextField(blank=True, null=True)
     url_picture = models.TextField(blank=True, null=True)
     other_notes = models.TextField(blank=True, null=True)
-    added_by_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    added_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.brand} {self.model}"
 
 # LINKED
 class Build(models.Model):
-    owner_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner_user = models.ForeignKey(User, on_delete=models.CASCADE)
     build_name = models.CharField(max_length=100)
     build_notes = models.TextField(blank=True, null=True)
     url_build_pic = models.TextField(blank=True, null=True)
@@ -135,49 +137,49 @@ class Build(models.Model):
 
 class Build_Like(models.Model):
     build = models.ForeignKey(Build, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.build} Like"
 
 class Accessory_Like(models.Model):
     accessory = models.ForeignKey(Part_Accessory, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.accessory} Like"
 
 class Bike_Like(models.Model):
     bike = models.ForeignKey(Part_Bike, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.bike} Like"
 
 class Rack_Like(models.Model):
     rack = models.ForeignKey(Part_Rack, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.rack} Like"
 
 class Seat_Like(models.Model):
     seat = models.ForeignKey(Part_Seat, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.seat} Like"
 
 class Storage_Like(models.Model):
     storage = models.ForeignKey(Part_Storage, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.storage} Like"
 
 class Trailer_Like(models.Model):
     trailer = models.ForeignKey(Part_Trailer, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.trailer} Like"
